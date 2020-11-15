@@ -3,9 +3,8 @@ namespace RentCars.Data.Models
 {
     using System;
 
-    using RentCars.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using RentCars.Data.Common.Models;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {

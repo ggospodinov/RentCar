@@ -3,9 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    using RentCars.Data.Common;
-
     using Microsoft.EntityFrameworkCore;
+    using RentCars.Data.Common;
 
     public class DbQueryRunner : IDbQueryRunner
     {

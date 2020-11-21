@@ -21,6 +21,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using RentCars.Services;
 
     public class Startup
     {
@@ -38,7 +40,8 @@
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
-                .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddRoles<ApplicationRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<CookiePolicyOptions>(
                 options =>
@@ -64,6 +67,15 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            //services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
+            //services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
+            //services.AddTransient<ILocationsService, LocationsService>();
+            services.AddTransient<ICarsService, CarsService>();
+            //services.AddTransient<IImagesService, ImagesService>();
+            //services.AddTransient<IOrdersService, OrdersService>();
+            services.AddTransient<IUsersService, UsersService>();
+            //services.AddTransient<IReviewsService, ReviewsService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

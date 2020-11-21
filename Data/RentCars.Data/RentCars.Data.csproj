@@ -40,6 +40,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\RentCars.Common\RentCars.Common.csproj" />
+    <ProjectReference Include="..\..\Services\RentCars.Services.Data\RentCars.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\RentCars.Services\RentCars.Services.csproj" />
     <ProjectReference Include="..\RentCars.Data.Common\RentCars.Data.Common.csproj" />
     <ProjectReference Include="..\RentCars.Data.Models\RentCars.Data.Models.csproj" />
   </ItemGroup>

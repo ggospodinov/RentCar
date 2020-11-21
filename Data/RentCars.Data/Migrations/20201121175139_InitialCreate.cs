@@ -3,10 +3,57 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentCars.Data.Migrations
 {
-    public partial class AddCarsAddAllModels : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
@@ -17,11 +64,135 @@ namespace RentCars.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Settings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Settings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    RoleId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -41,7 +212,7 @@ namespace RentCars.Data.Migrations
                     Image = table.Column<string>(nullable: false),
                     GearType = table.Column<int>(nullable: false),
                     PricePerDay = table.Column<decimal>(nullable: false),
-                    LocationId = table.Column<int>(nullable: false),
+                    LocationId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,7 +236,7 @@ namespace RentCars.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     CarId = table.Column<int>(nullable: false),
-                    RentDate = table.Column<DateTime>(nullable: false),
+                    RentDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,7 +262,7 @@ namespace RentCars.Data.Migrations
                     CarId = table.Column<int>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: false),
                     Rating = table.Column<int>(nullable: false),
-                    Comment = table.Column<string>(nullable: false),
+                    Comment = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,7 +295,7 @@ namespace RentCars.Data.Migrations
                     PickUpLocationId = table.Column<int>(nullable: false),
                     ReturnLocationId = table.Column<int>(nullable: false),
                     ReviewId = table.Column<int>(nullable: true),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -175,7 +346,7 @@ namespace RentCars.Data.Migrations
                     { 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, null, "Varna, Dolphinarium" },
                     { 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, null, "Pleven, Hotel Bulgaria" },
                     { 9, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, null, "Sozopol, Old City Post Office" },
-                    { 10, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, null, "Lovech, Varosha Gallery" },
+                    { 10, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, null, "Lovech, Varosha Gallery" }
                 });
 
             migrationBuilder.InsertData(
@@ -193,8 +364,57 @@ namespace RentCars.Data.Migrations
                     { 8, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The 2020 Honda Ridgeline, the second generation of Honda's innovative, one-of-a-kind pickup truck with innovations such as the In-Bed Trunk and world's first Truck Bed Audio System was chosen by a panel of expert automotive journalists as the 2020 North America Truck of the Year. ", 1, "https://blogmedia.dealerfire.com/wp-content/uploads/sites/1074/2019/12/2020-Honda-Ridgeline-exterior-side-shot-with-Obsidian-Blue-Pearl-paint-color-parked-on-a-beach-line-of-gravel-and-sand-next-to-the-ocean_o.jpg", true, false, 4, "Honda RidgeLine", null, 20m, 2020 },
                     { 9, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Insignia was the flagship of the Opel range and offered as a medium-large sedan and station wagon. Passenger space is good, with almost as much legroom, but slightly less width in the back seat than Commodore and Falcon.", 1, "https://cdn.statically.io/img/avtotachki.com/wp-content/uploads/2020/05/opel-insignia-grand-sport-2-0-cdti-170-l-s-6-meh-1.png?quality=90&f=auto", true, false, 5, "Opel Insignia", null, 15m, 2020 },
                     { 10, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "The Impala continues to reign as the leading large sedan. Slide behind the wheel and you can see why. Roomy, supportive seats put you in the perfect position to access the intuitive controls. Despite its prodigious size, the Impala’s handling is responsive and secure.", 2, "https://cars.usnews.com/static/images/Auto/izmo/i55706568/2018_chevrolet_impala_angularfront.jpg", true, false, 6, "Chevrolet Impala", null, 12m, 2020 },
-                    { 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "No matter which new hybrid SUV model you choose, you’ll enjoy distinct styling, flexible design, and impressive fuel economy. Full-size Toyota SUV hybrids deliver roomy versatility, ample seating capacity and cargo space, easy-to-read controls, and countless thoughtful amenities for your active and growing family. For a new hybrid SUV with even more maneuverability, check out a versatile Toyota hybrid crossover SUV instead. In addition to ample cargo space, expect competitive fuel efficiency and Toyota quality in every hybrid SUV we offer. Help blaze your trail with less fuel and more fun. Find the best hybrid SUV for your next adventure.", 2, "https://media.ed.edmunds-media.com/toyota/rav4-hybrid/2019/oem/2019_toyota_rav4-hybrid_4dr-suv_limited_fq_oem_7_815.jpg", true, false, 7, "TOYOTA RAV4 Hybrid", null, 39m, 2020 },
+                    { 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "No matter which new hybrid SUV model you choose, you’ll enjoy distinct styling, flexible design, and impressive fuel economy. Full-size Toyota SUV hybrids deliver roomy versatility, ample seating capacity and cargo space, easy-to-read controls, and countless thoughtful amenities for your active and growing family. For a new hybrid SUV with even more maneuverability, check out a versatile Toyota hybrid crossover SUV instead. In addition to ample cargo space, expect competitive fuel efficiency and Toyota quality in every hybrid SUV we offer. Help blaze your trail with less fuel and more fun. Find the best hybrid SUV for your next adventure.", 2, "https://media.ed.edmunds-media.com/toyota/rav4-hybrid/2019/oem/2019_toyota_rav4-hybrid_4dr-suv_limited_fq_oem_7_815.jpg", true, false, 7, "TOYOTA RAV4 Hybrid", null, 39m, 2020 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoles_IsDeleted",
+                table: "AspNetRoles",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_IsDeleted",
+                table: "AspNetUsers",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarRentDays_CarId",
@@ -260,10 +480,30 @@ namespace RentCars.Data.Migrations
                 name: "IX_Reviews_IsDeleted",
                 table: "Reviews",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Settings_IsDeleted",
+                table: "Settings",
+                column: "IsDeleted");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
             migrationBuilder.DropTable(
                 name: "CarRentDays");
 
@@ -271,7 +511,16 @@ namespace RentCars.Data.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
+                name: "Settings");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
                 name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Cars");

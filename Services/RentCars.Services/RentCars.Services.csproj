@@ -18,4 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\RentCars.Data.Models\RentCars.Data.Models.csproj" />
+    <ProjectReference Include="..\RentCars.Services.Data\RentCars.Services.Data.csproj" />
+  </ItemGroup>
+
 </Project>

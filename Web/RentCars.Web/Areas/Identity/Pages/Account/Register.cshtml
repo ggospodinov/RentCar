@@ -1,0 +1,117 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Renten - Car Rental Service HTML Template</title>
+    <!-- site favicon -->
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.jpg" />
+    <!-- fontawesome css link -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+    <!-- bootstrap css link -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- lightcase css link -->
+    <link rel="stylesheet" href="/assets/css/lightcase.css">
+    <!-- animate css link -->
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <!-- nice select css link -->
+    <link rel="stylesheet" href="/assets/css/nice-select.css">
+    <!-- datepicker css link -->
+    <link rel="stylesheet" href="/assets/css/datepicker.min.css">
+    <!-- wickedpicker css link -->
+    <link rel="stylesheet" href="/assets/css/wickedpicker.min.css">
+    <!-- jquery ui css link -->
+    <link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+    <!-- owl carousel css link -->
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <!-- main style css link -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+    <section class="inner-page-banner bg_img overlay-3" data-background="assets/images/inner-page-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-title">Create New account</h2>
+                    <ol class="page-list">
+                        <li><a href=""><i class="fa fa-home"></i> Home</a></li>
+                        <li>Registration</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col-md-6 align-self-center" >
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+    <div class="scroll-to-top">
+        <span class="scroll-icon">
+            <i class="fa fa-rocket"></i>
+        </span>
+    </div>
+    <!-- inner-apge-banner end -->
+    <!-- registration-section start -->
+    <!-- registration-section end -->
+    <!-- footer-section start -->
+    <!-- footer-section end -->
+    <!-- scroll-to-top start -->
+    <!-- scroll-to-top end -->
+    <!-- jquery js link -->
+    <script src="/assets/js/jquery-3.3.1.min.js"></script>
+    <!-- jquery migrate js link -->
+    <script src="/assets/js/jquery-migrate-3.0.0.js"></script>
+    <!-- bootstrap js link -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- lightcase js link -->
+    <script src="/assets/js/lightcase.js"></script>
+    <!-- wow js link -->
+    <script src="/assets/js/wow.min.js"></script>
+    <!-- nice select js link -->
+    <script src="/assets/js/jquery.nice-select.min.js"></script>
+    <!-- datepicker js link -->
+    <script src="/assets/js/datepicker.min.js"></script>
+    <script src="/assets/js/datepicker.en.js"></script>
+    <!-- wickedpicker js link -->
+    <script src="/assets/js/wickedpicker.min.js"></script>
+    <!-- owl carousel js link -->
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <!-- jquery ui js link -->
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <!-- main js link -->
+    <script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

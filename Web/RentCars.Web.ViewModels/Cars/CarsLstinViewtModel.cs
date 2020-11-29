@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RentCars.Web.ViewModels.Cars
+﻿namespace RentCars.Web.ViewModels.Cars
 {
-   public class CarsLstinViewtModel
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    public class CarsLstinViewtModel : PagingViewModel
     {
         public IEnumerable<CarDetailInputModel> Cars { get; set; }
 
-        public int PageNumber { get; set; }
     }
 }

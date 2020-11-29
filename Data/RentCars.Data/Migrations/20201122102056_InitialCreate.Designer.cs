@@ -10,7 +10,7 @@ using RentCars.Data;
 namespace RentCars.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201121175139_InitialCreate")]
+    [Migration("20201122102056_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -288,6 +288,9 @@ namespace RentCars.Data.Migrations
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("Speed")
+                        .HasColumnType("int");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
@@ -312,6 +315,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 1,
                             Model = "Mazda 6",
                             PricePerDay = 60m,
+                            Speed = 180,
                             Year = 2020
                         },
                         new
@@ -326,6 +330,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 1,
                             Model = "Mazda 3",
                             PricePerDay = 39m,
+                            Speed = 180,
                             Year = 2020
                         },
                         new
@@ -340,6 +345,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 1,
                             Model = "BMW X7",
                             PricePerDay = 80m,
+                            Speed = 155,
                             Year = 2020
                         },
                         new
@@ -354,6 +360,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 1,
                             Model = "Tesla Model X",
                             PricePerDay = 80m,
+                            Speed = 245,
                             Year = 2019
                         },
                         new
@@ -368,6 +375,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 1,
                             Model = "Toyota Yaris iA",
                             PricePerDay = 40m,
+                            Speed = 180,
                             Year = 2020
                         },
                         new
@@ -376,12 +384,13 @@ namespace RentCars.Data.Migrations
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The Optima is a vehicle that delivers all of these virtues in a stylish, value-laden package that’s filled with features usually found on pricier cars. With outstanding reliability and extensive warranty coverage, savvy sedan shoppers should take this recently redesigned car for a test drive.",
                             GearType = 2,
-                            Image = "https://res.cloudinary.com/dis59vn8s/image/upload/v1561931416/Kia-02-17_c1aqgf.jpghttps://cdcssl.ibsrv.net/cimg/www.carsdirect.com/680x382_85/405/15368_2020_Optima-575405.jpg",
+                            Image = "https://i.dir-i.net/CMS/2019/12/28/k/5f_kzmt31.jpg",
                             InUse = true,
                             IsDeleted = false,
                             LocationId = 2,
                             Model = "Kia Optima",
                             PricePerDay = 36m,
+                            Speed = 200,
                             Year = 2020
                         },
                         new
@@ -396,6 +405,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 3,
                             Model = "Subaru Forester",
                             PricePerDay = 55m,
+                            Speed = 230,
                             Year = 2020
                         },
                         new
@@ -410,6 +420,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 4,
                             Model = "Honda RidgeLine",
                             PricePerDay = 20m,
+                            Speed = 220,
                             Year = 2020
                         },
                         new
@@ -418,12 +429,13 @@ namespace RentCars.Data.Migrations
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The Insignia was the flagship of the Opel range and offered as a medium-large sedan and station wagon. Passenger space is good, with almost as much legroom, but slightly less width in the back seat than Commodore and Falcon.",
                             GearType = 1,
-                            Image = "https://cdn.statically.io/img/avtotachki.com/wp-content/uploads/2020/05/opel-insignia-grand-sport-2-0-cdti-170-l-s-6-meh-1.png?quality=90&f=auto",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_MfOl8X2QtiGoqH9SOVrrml25pw6g3Rk5w&usqp=CAU",
                             InUse = true,
                             IsDeleted = false,
                             LocationId = 5,
                             Model = "Opel Insignia",
                             PricePerDay = 15m,
+                            Speed = 200,
                             Year = 2020
                         },
                         new
@@ -432,12 +444,13 @@ namespace RentCars.Data.Migrations
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "The Impala continues to reign as the leading large sedan. Slide behind the wheel and you can see why. Roomy, supportive seats put you in the perfect position to access the intuitive controls. Despite its prodigious size, the Impala’s handling is responsive and secure.",
                             GearType = 2,
-                            Image = "https://cars.usnews.com/static/images/Auto/izmo/i55706568/2018_chevrolet_impala_angularfront.jpg",
+                            Image = "https://banner2.cleanpng.com/20180410/xrw/kisspng-2017-chevrolet-impala-2018-chevrolet-impala-chevro-chevrolet-5accd70885ac83.6020416415233738325475.jpg",
                             InUse = true,
                             IsDeleted = false,
                             LocationId = 6,
                             Model = "Chevrolet Impala",
                             PricePerDay = 12m,
+                            Speed = 200,
                             Year = 2020
                         },
                         new
@@ -452,6 +465,7 @@ namespace RentCars.Data.Migrations
                             LocationId = 7,
                             Model = "TOYOTA RAV4 Hybrid",
                             PricePerDay = 39m,
+                            Speed = 280,
                             Year = 2020
                         });
                 });

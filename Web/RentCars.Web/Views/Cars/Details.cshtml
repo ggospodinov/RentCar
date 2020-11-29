@@ -1,0 +1,57 @@
+﻿
+@model RentCars.Web.ViewModels.Cars.CarsLstinViewtModel
+         @{ViewData["Title"] = "Details cars";}
+<div class="container">
+
+    @foreach (var car in Model.Cars)
+    {
+
+        var averageRating = car.Reviews.Count() == 0 ? "0" : car.Reviews.Average(p => p.Rating).ToString("F");
+   
+    <h1 style="margin-top:2%" class="my-4">
+        @car.Model Details 
+    </h1> 
+    <hr class="border-info" />
+        if (User.IsInRole("Administrator"))
+        {
+<a class="btn btn-info" asp-controller="Cars" asp-area="Administration" asp-action="Edit" asp-route-id="@car.Id">Edit Car</a>
+                <a class="btn btn-info" asp-controller="Cars" asp-action="Delete" asp-area="Administration" asp-route-id="@car.Id" data-confirm="This car will become hidden for use in the site. All related orders and reviews will remain unchanged. Continue?">Delete Car</a>}
+        @if (car.Reviews.Count > 0)
+                    {
+                        //<partial name="_CarDetailsBadge" model="@.Reviews" />
+                @await Html.PartialAsync("~/Views/Shared/_CarDetailsBadge.cshtml", @car.Reviews)}
+<div class="row">
+    <div class="col-md-8">
+        <img class="img-fluid" src="@car.Image" alt="">
+    </div>
+    <div class="col-md-4">
+        <h3 class="my-3">Model Description</h3>
+        <hr class="border-primary" />
+        <p>@car.Description</p>
+        <h3 class="my-3">Model Details</h3>
+        <hr class="border-primary" />
+        <h6><i class="fas fa-cogs"></i> Gear Type: @car.GearType.ToString()</h6>
+         <h6><i class="fas fa-star"></i> Average Rating: @averageRating</h6>
+        <h6><i class="fas fa-fan"></i> Air Conditioner: Yes </h6>
+        <h6><i class="fas fa-location-arrow"></i> GPS Navigation: Yes </h6>
+    </div>
+</div>
+
+    @if (car.Reviews.Count > 0)
+    {
+        //<partial name="_CarReviewsPartial" model="@Model.Reviews" />
+@await Html.PartialAsync("~/Views/Shared/_CarReviewsPartial.cshtml", car.Reviews) }
+else
+{
+<h3>This cars was not reviewed by our users.</h3>
+    }
+    }
+    
+
+    @section Scripts {
+        <partial name="~/Views/Shared/_DataValidationAndConfirmScripts.cshtml" />
+       @*// <partial name="~/Views/Shared/Partials/_FontAwesomeIcons.cshtml" />*@
+    }
+
+    <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+    <script src="/js/notify.js"></script>

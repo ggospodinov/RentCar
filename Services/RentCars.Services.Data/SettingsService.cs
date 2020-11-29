@@ -16,14 +16,16 @@
             this.settingsRepository = settingsRepository;
         }
 
+        public IEnumerable<T> GetAll<T>()
+        {
+            return this.settingsRepository.All().To<T>().ToList();
+        }
+
         public int GetCount()
         {
             return this.settingsRepository.AllAsNoTracking().Count();
         }
 
-        public IEnumerable<T> GetAll<T>()
-        {
-            return this.settingsRepository.All().To<T>().ToList();
-        }
+        
     }
 }

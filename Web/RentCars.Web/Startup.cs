@@ -69,9 +69,9 @@
             services.AddTransient<ISettingsService, SettingsService>();
             //services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
             //services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
-            //services.AddTransient<ILocationsService, LocationsService>();
+            services.AddTransient<ILocationsService, LocationsService>();
             services.AddTransient<ICarsService, CarsService>();
-            //services.AddTransient<IImagesService, ImagesService>();
+            services.AddTransient<IImagesService, ImagesService>();
             //services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IUsersService, UsersService>();
             //services.AddTransient<IReviewsService, ReviewsService>();

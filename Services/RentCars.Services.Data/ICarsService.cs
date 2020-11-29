@@ -4,32 +4,23 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
-
-    using RentCars.Data.Models;
     using RentCars.Web.ViewModels.Cars;
+    using RentCars.Web.ViewModels.Locations;
 
-  public interface ICarsService
+    public interface ICarsService
     {
-        Task<bool> AddCar(ListCarInputModel input);
+        int GetCount();
 
         IEnumerable<CarDetailInputModel> GetAll(int page, int itemsPerRege = 6);
 
-        Task<bool> EditCar(Car car);
+        IEnumerable<ListCarInputModel> GetAvailableCars(DateTime start, DateTime end, string location);
 
-        Task<bool> DeleteCar(int id);
+        IEnumerable<LocationInputModel> GetLocation( string name);
 
-        ICollection<ListCarInputModel> GetAvailableCars(DateTime start, DateTime end, string location);
+        IEnumerable<CarDetailInputModel> GetCarModelById(int id);
 
-        ICollection<ListCarInputModel> GetAllCars(string orderBy);
+        
 
-        Task<bool> RentCar(DateTime start, DateTime end, int cardId);
 
-        Task<CarDetailInputModel> FindCar(int id);
-
-        Task<CarDetailInputModel> FindCarForEdit(int id);
-
-        Task<string> GetCarModelById(int id);
-
-        Task<bool> IsAlreadyRented(DateTime start, DateTime end, int cardId);
     }
 }

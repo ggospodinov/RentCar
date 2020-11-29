@@ -1,0 +1,97 @@
+﻿@model RentCars.Web.ViewModels.Home.SearchCarsViewModel
+
+
+<div class="col-md-7 card" style="background-color: white; font-size:150%">
+    <form asp-controller="Cars" asp-action="Available" method="POST">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-row" style="margin-top: 3%">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Pickup" class="text-black-50"></label>
+                <input asp-for="Pickup" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Return" class="text-black-50"></label>
+                <input asp-for="Return" class="form-control" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="PickupPlace" class="text-black-50">Pick Up location for the car</label>
+                <select class="custom-select" asp-for="PickupPlace">
+                  
+
+                    @*@foreach (var location in Model.Locations)
+        {
+            <option value="@location">@location</option>
+        }@*@
+                </select>
+                <span asp-validation-for="PickupPlace"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="ReturnPlace" class="text-black-50">Return location for the car</label>
+                <select class="custom-select" asp-for="ReturnPlace">
+
+                    @*@foreach (var location in Model.Locations)
+                    {
+                        <option value="@location">@location</option>
+                    }*@
+                </select>
+                <span asp-validation-for="ReturnPlace"
+                      class="text-danger"></span>
+            </div>
+        </div>
+        <button class="btn btn-warning" type="submit" style="margin-bottom:3%">Reservation</button>
+      
+    </form>
+</div>
+    @*<div class="container">
+    <div class="row align-items-center">
+        <div class="col-lg-5">
+            <div class="car-search-area mt-0">
+                <h3 class="title">Search for Your Car</h3>
+                <form class="car-search-form">
+                    <div class="row">
+                        <div class="form-group col-xl-6">
+                            <i class="fa fa-map-marker"></i>
+                            <input class="form-control has-icon" type="text" placeholder="Pickup Location">
+                        </div>
+                        <div class="form-group col-xl-6">
+                            <i class="fa fa-map-marker"></i>
+                            <input class="form-control has-icon" type="text" placeholder="Drop Off Location">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xl-6">
+                            <i class="fa fa-calendar"></i>
+                            <input type='text' class='form-control has-icon datepicker-here' data-language='en' placeholder="Pickup Date">
+                        </div>
+                        <div class="form-group col-xl-6">
+                            <i class="fa fa-clock-o"></i>
+                            <input type="text" name="timepicker" class="form-control has-icon timepicker" placeholder="Pickup Time">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xl-6">
+                            <i class="fa fa-calendar"></i>
+                            <input type='text' class='form-control has-icon datepicker-here' data-language='en' placeholder="Drop Off Date">
+                        </div>
+                        <div class="form-group col-xl-6">
+                            <i class="fa fa-clock-o"></i>
+                            <input type="text" name="timepicker" class="form-control has-icon timepicker" placeholder="Drop Off Time">
+                        </div>
+                    </div>
+                    <button type="submit" class="cmn-btn btn-radius">Reservation</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="banner-content">
+                <h1 class="title">find your own car</h1>
+                <p>Lorem ipsum dolor sit amet, congue placerat nec. Leo faubus sed eleifend bibendum neque vehiculanulla. Lorem ipsum dolor sit amet, congue placerat nec. Leo faubus sed eleifend bibendum neque vehiculanulla.</p>
+                <a href="#0" class="cmn-btn">see all vehicles</a>
+            </div>
+        </div>
+    </div>
+    </div>*@

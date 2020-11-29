@@ -7,18 +7,15 @@
 
 <hr class="border-info" />
 
-@if (Model.Cars.Count == 0)
-{
-    <h1>Sorry, we dont have any available car in this location.</h1>
-}
-else
-{
+
+    <h1>Sorry, we dont have any available car in this location.</h1> 
+
     var counter = 0;
 
-    @: <div class="row justify-content-between">
+   <div class="row justify-content-between">
         @foreach (var item in Model.Cars)
         {
-            counter++;
+            //counter++;
             <div class="card mb-2 col-md-5 border-info ">
                 <h3 class="card-header" style="background-color:transparent">@item.Model</h3>
                 <img style="height: 280px; width: 440px; display: block;" src="@item.Image" alt="@item.Model">
@@ -34,9 +31,7 @@ else
                     </li>
                 </ul>
                 <div class="justify-content-center mx-2 mb-2 m-2">
-                    @{
-                        decimal price = (decimal)Model.Days * item.PricePerDay;
-                    }
+                    @{ decimal price = (decimal)Model.Days * item.PricePerDay; }
 
                     <form asp-controller="Orders" asp-action="Preview" method="POST">
                         <input type="hidden" value="@item.Id" name="Id" />
@@ -53,10 +48,20 @@ else
 
                 </div>
             </div>
-            if (counter % 2 == 0)
+            @*if (counter % 2 == 0)
             {
                 @Html.Raw("</div>")
-                @Html.Raw("<div class=\"row justify-content-between\">")
-            }
+                @Html.Raw("<div class=\"row justify-content-between\">")}*@
         }
-    }
+    
+    
+    
+   
+
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@
 
     using RentCars.Data.Common.Models;
 
-    public class Location: BaseDeletableModel<int>
+    public class Location : BaseDeletableModel<int>
     {
 
         [Required]

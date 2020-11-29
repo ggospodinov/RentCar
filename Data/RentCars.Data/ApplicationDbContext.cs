@@ -98,6 +98,7 @@
                 PricePerDay = 60,
                 Image = "https://www.mazdausa.com/siteassets/vehicles/2020/mazda6/trims/gt/2020-mazda6-gt-soul-red-crystal.png",
                 Year = 2020,
+                Speed = 180,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -110,6 +111,7 @@
                 PricePerDay = 39,
                 Image = "https://www.pngitem.com/pimgs/m/610-6106111_2020-mazda-3-black-hd-png-download.png",
                 Year = 2020,
+                Speed = 180,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -122,6 +124,7 @@
                 PricePerDay = 80,
                 Image = "https://images.hgmsites.net/hug/2020-bmw-x7_100728938_h.jpg",
                 Year = 2020,
+                Speed = 155,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -134,6 +137,7 @@
                 PricePerDay = 80,
                 Image = "https://www.autocar.co.uk/sites/autocar.co.uk/files/images/car-reviews/first-drives/legacy/1-tesla-model-x-long-range-2019-uk-fd-hero-front.jpg",
                 Year = 2019,
+                Speed = 245,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -146,6 +150,7 @@
                 PricePerDay = 40,
                 Image = "https://media.ed.edmunds-media.com/toyota/yaris/2019/oem/2019_toyota_yaris_sedan_xle_fq_oem_1_1600.jpg",
                 Year = 2020,
+                Speed = 180,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -156,8 +161,9 @@
                 GearType = Models.Enums.GearType.Automatic,
                 LocationId = 2,
                 PricePerDay = 36,
-                Image = "https://res.cloudinary.com/dis59vn8s/image/upload/v1561931416/Kia-02-17_c1aqgf.jpghttps://cdcssl.ibsrv.net/cimg/www.carsdirect.com/680x382_85/405/15368_2020_Optima-575405.jpg",
+                Image = "https://i.dir-i.net/CMS/2019/12/28/k/5f_kzmt31.jpg",
                 Year = 2020,
+                Speed = 200,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -170,6 +176,7 @@
                 PricePerDay = 55,
                 Image = "https://cars.usnews.com/static/images/Auto/custom/14103/2020_Subaru_Forester_2.jpg",
                 Year = 2020,
+                Speed = 230,
             });
 
 
@@ -183,6 +190,7 @@
                 PricePerDay = 20,
                 Image = "https://blogmedia.dealerfire.com/wp-content/uploads/sites/1074/2019/12/2020-Honda-Ridgeline-exterior-side-shot-with-Obsidian-Blue-Pearl-paint-color-parked-on-a-beach-line-of-gravel-and-sand-next-to-the-ocean_o.jpg",
                 Year = 2020,
+                Speed = 220,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -193,8 +201,9 @@
                 GearType = Models.Enums.GearType.Manual,
                 LocationId = 5,
                 PricePerDay = 15,
-                Image = "https://cdn.statically.io/img/avtotachki.com/wp-content/uploads/2020/05/opel-insignia-grand-sport-2-0-cdti-170-l-s-6-meh-1.png?quality=90&f=auto",
+                Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_MfOl8X2QtiGoqH9SOVrrml25pw6g3Rk5w&usqp=CAU",
                 Year = 2020,
+                Speed = 200,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -205,8 +214,9 @@
                 GearType = Models.Enums.GearType.Automatic,
                 LocationId = 6,
                 PricePerDay = 12,
-                Image = "https://cars.usnews.com/static/images/Auto/izmo/i55706568/2018_chevrolet_impala_angularfront.jpg",
+                Image = "https://banner2.cleanpng.com/20180410/xrw/kisspng-2017-chevrolet-impala-2018-chevrolet-impala-chevro-chevrolet-5accd70885ac83.6020416415233738325475.jpg",
                 Year = 2020,
+                Speed = 200,
             });
 
             builder.Entity<Car>().HasData(new Car
@@ -219,6 +229,7 @@
                 PricePerDay = 39,
                 Image = "https://media.ed.edmunds-media.com/toyota/rav4-hybrid/2019/oem/2019_toyota_rav4-hybrid_4dr-suv_limited_fq_oem_7_815.jpg",
                 Year = 2020,
+                Speed = 280,
             });
 
             this.ConfigureUserIdentityRelations(builder);

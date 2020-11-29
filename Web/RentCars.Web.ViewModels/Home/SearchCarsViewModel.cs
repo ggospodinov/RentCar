@@ -1,18 +1,25 @@
 ﻿namespace RentCars.Web.ViewModels.Home
 {
+    using RentCars.Data.Models;
+    using RentCars.Web.ViewModels.Locations;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class SearchCarsViewModel : IValidatableObject
-    {
+        {
         private const string PickupError = "Pick Up date is invalid!";
         private const string ReturnError = "Return date is invalid!";
+
+       
 
         public SearchCarsViewModel()
         {
             this.Pickup = DateTime.UtcNow;
             this.Return = DateTime.UtcNow.AddDays(1);
+          
+
+
         }
 
         [Required]
@@ -36,7 +43,6 @@
         public string ReturnPlace { get; set; }
 
         public ICollection<string> Locations { get; set; } = new HashSet<string>();
-
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (this.Pickup.Date >= this.Return.Date || this.Pickup.Date < DateTime.UtcNow.Date)

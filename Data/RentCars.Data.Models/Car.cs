@@ -28,6 +28,9 @@
         public int Year { get; set; }
 
         [Required]
+        public int Speed { get; set; }
+
+        [Required]
         public string Image { get; set; }
 
         [Required]

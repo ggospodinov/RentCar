@@ -1,5 +1,6 @@
 ﻿using RentCars.Data.Models;
 using RentCars.Data.Models.Enums;
+using RentCars.Web.ViewModels.Locations;
 using RentCars.Web.ViewModels.Reviews;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,12 @@ using System.Text;
 
 namespace RentCars.Web.ViewModels.Cars
 {
-   public class CarDetailInputModel
+    public class CarDetailInputModel
     {
         public CarDetailInputModel()
         {
             this.Reviews = new HashSet<ReviewInputModel>();
+            
         }
 
         public int Id { get; set; }
@@ -19,6 +21,8 @@ namespace RentCars.Web.ViewModels.Cars
         public string Model { get; set; }
 
         public string Description { get; set; }
+
+        public int Speed { get; set; }
 
         public int Year { get; set; }
 
@@ -33,5 +37,8 @@ namespace RentCars.Web.ViewModels.Cars
         public Location Location { get; set; }
 
         public ICollection<ReviewInputModel> Reviews { get; set; }
+
+      
+
     }
 }

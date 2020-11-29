@@ -12,6 +12,6 @@ namespace RentCars.Web.ViewModels.Reviews
 
         public string User { get; set; }
 
-      
+     
     }
 }

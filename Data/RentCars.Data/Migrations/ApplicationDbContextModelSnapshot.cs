@@ -619,6 +619,9 @@ namespace RentCars.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("PickUpLocationId")
                         .HasColumnType("int");
 

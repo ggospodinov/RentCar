@@ -5,7 +5,7 @@
 
     using RentCars.Data.Common.Models;
 
-    public class CarRentDays: BaseDeletableModel<int>
+    public class CarRentDays : BaseDeletableModel<int>
     {
 
         [Required]

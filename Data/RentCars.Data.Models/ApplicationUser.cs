@@ -4,9 +4,8 @@ namespace RentCars.Data.Models
     using System;
     using System.Collections.Generic;
 
-    using RentCars.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using RentCars.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

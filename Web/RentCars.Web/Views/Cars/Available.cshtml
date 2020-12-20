@@ -6,13 +6,16 @@
 <h1 style="margin-top:2%">Available cars for the period @Model.Start.Date.ToShortDateString() - @Model.End.Date.ToShortDateString()</h1>
 
 <hr class="border-info" />
-
-
-    <h1>Sorry, we dont have any available car in this location.</h1> 
+@if (!Model.Cars.Any())
+{
+    <h1>Sorry, we dont have any available car in this location.</h1>
+}
+else
+{
 
     var counter = 0;
 
-   <div class="row justify-content-between">
+    @:<div class="row justify-content-between">
         @foreach (var item in Model.Cars)
         {
             //counter++;
@@ -48,15 +51,14 @@
 
                 </div>
             </div>
-            @*if (counter % 2 == 0)
-            {
-                @Html.Raw("</div>")
-                @Html.Raw("<div class=\"row justify-content-between\">")}*@
+
         }
-    
-    
-    
-   
+    }
+
+
+
+
+
 
 
 

@@ -7,6 +7,5 @@
     public class CarsLstinViewtModel : PagingViewModel
     {
         public IEnumerable<CarDetailInputModel> Cars { get; set; }
-
     }
 }

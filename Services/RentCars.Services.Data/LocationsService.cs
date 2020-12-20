@@ -1,29 +1,46 @@
 ﻿using RentCars.Data.Common.Repositories;
 using RentCars.Data.Models;
+using RentCars.Web.ViewModels.Locations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RentCars.Services.Data
 {
+
+
+
+
     public class LocationsService : ILocationsService
 
     {
-        private readonly IDeletableEntityRepository<Location> locationRepository;
+        private readonly IDeletableEntityRepository<Location> locationsRepository;
 
-        public LocationsService(IDeletableEntityRepository<Location> locationRepository)
+        public LocationsService(IDeletableEntityRepository<Location> locationsRepository)
         {
-            this.locationRepository = locationRepository;
+            this.locationsRepository = locationsRepository;
         }
 
-        public ICollection<string> GetAllLcocationNames()
+        public IEnumerable<LocationInputModel> GetAllLocation()
         {
-            return this.locationRepository.AllAsNoTracking()
-                .Select(x => x.Name).
-                ToList();
+            var locations = this.locationsRepository.AllAsNoTracking().
+                 OrderBy(x => x.Name).
+                Select(x => new LocationInputModel
+                {
+                    Name = x.Name,
+                })
+               .ToList();
+
+               return locations;
         }
 
-        
+       
+        Task ILocationsService.GetIdByName(string startLocation)
+        {
+            throw new NotImplementedException();
+        }
     }
-}
+    }
+

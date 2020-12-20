@@ -6,8 +6,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+
     public class SearchCarsViewModel : IValidatableObject
-        {
+    {
         private const string PickupError = "Pick Up date is invalid!";
         private const string ReturnError = "Return date is invalid!";
 
@@ -32,17 +33,17 @@
         [Display(Name = "Return Date")]
         public DateTime Return { get; set; }
 
-        [Required]
+        //[Required]
         [DataType(DataType.Text)]
         [Display(Name = "Pick Up Place")]
         public string PickupPlace { get; set; }
 
-        [Required]
+        //[Required]
         [DataType(DataType.Text)]
         [Display(Name = "Return Place")]
         public string ReturnPlace { get; set; }
 
-        public ICollection<string> Locations { get; set; } = new HashSet<string>();
+        public IEnumerable<Location> Locations { get; set; } = new HashSet<Location>();
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (this.Pickup.Date >= this.Return.Date || this.Pickup.Date < DateTime.UtcNow.Date)

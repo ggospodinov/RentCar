@@ -12,19 +12,17 @@
     public class CarsController : BaseController
     {
         private const string TimeAdded = "TimeAdded";
-        private const int DefaultPageIndex = 1;
-        private const int DefaultCarsPerPage = 9;
         private readonly ICarsService carsService;
-        private readonly ILocationsService locationService;
+        private readonly ILocationsService locationsService;
 
 
 
-        public CarsController(ICarsService carsService ,ILocationsService locationsService)
-        {
+
+        public CarsController(ICarsService carsService, ILocationsService locationsService)
+            {
             this.carsService = carsService;
-            this.locationService = locationService;
-
-        }
+            this.locationsService = locationsService;
+            }
 
         public IActionResult All(int id = 1)
         {
@@ -44,19 +42,21 @@
         [HttpPost]
         public IActionResult Available(SearchCarsViewModel model)
         {
-            //if (!this.User.Identity.IsAuthenticated)
-            //{
-            //    return this.Redirect("/Identity/Account/Login");
-            //}
+        if (!this.User.Identity.IsAuthenticated)
+        {
+           return this.Redirect("/Identity/Account/Login");
+       }
 
-            //if (!this.ModelState.IsValid)
-            //{
-            //    return this.RedirectToAction("Index", "Home");
-            //}
+            //   //if (!this.ModelState.IsValid)
+            //    //{
+            //    //    return this.RedirectToAction("Index", "Home");
+            //    //}
 
-            var cars = this.carsService.GetAvailableCars(model.Pickup, model.Return,model.PickupPlace).ToList();
+        var cars = this.carsService.GetAvailableCars(model.Pickup, model.Return, model.PickupPlace).ToList();
 
+            //var location = this.locationsService.GetAllLocation().ToList();
 
+           
 
             var viewModel = new AvailableCarsViewModel
             {
@@ -64,20 +64,23 @@
                 Start = model.Pickup,
                 End = model.Return,
                 Days = (model.Return.Date - model.Pickup.Date).TotalDays,
-               
-                PickUpPlace = model.PickupPlace,
-                ReturnPlace = model.ReturnPlace,
-                
-                
+
+                PickUpPlace= model.PickupPlace,
+                ReturnPlace = model.PickupPlace,
             };
 
-          
+            
+            
 
-            return this.View(viewModel);
+            //foreach(var location in model.Locations.Select(x=>x.Name))
+            //{ 
+            //var locations = this.locationsService.GetAllLocation();
+            //}
+
+        return this.View(viewModel);
         }
 
-
-        //public async Task<IActionResult> Details(int id)
+        // public IActionResult> Details(int id)
         //{
         //    var car = await this.carsService.FindCar(id);
 
@@ -97,17 +100,10 @@
             const int ItemsPerPage = 1;
             var viewModel = new CarsLstinViewtModel
             {
-             
                 Cars = this.carsService.GetAll(id, ItemsPerPage),
             };
 
             return this.View(viewModel);
         }
     }
-
-
-
-
-
-
 }

@@ -59,7 +59,7 @@ namespace RentCars.Web.Areas.Identity.Pages.Account
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
+                this.ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
             returnUrl = returnUrl ?? Url.Content("~/");

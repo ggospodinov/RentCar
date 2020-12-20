@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+
     using RentCars.Web.ViewModels.Cars;
     using RentCars.Web.ViewModels.Locations;
 
@@ -15,12 +16,6 @@
 
         IEnumerable<ListCarInputModel> GetAvailableCars(DateTime start, DateTime end, string location);
 
-        IEnumerable<LocationInputModel> GetLocation( string name);
-
         IEnumerable<CarDetailInputModel> GetCarModelById(int id);
-
-        
-
-
     }
 }

@@ -9,7 +9,7 @@
     using RentCars.Web.ViewModels.Locations;
     using RentCars.Web.ViewModels.Reviews;
 
-    public class ListCarInputModel 
+    public class ListCarInputModel
     {
         public int Id { get; set; }
 
@@ -25,13 +25,13 @@
 
         public decimal PricePerDay { get; set; }
 
-        public DateTime StartRent { get; set; }
-
-        public DateTime End { get; set; }
-
-        public int Days { get; set; }
         public string Location { get; set; }
 
+        public DateTime StartRent { get; set; }
+        public DateTime End { get; set; }
+        public int Days { get; set; }
+
+  
         public virtual ICollection<ReviewInputModel> Reviews { get; set; }
 
 

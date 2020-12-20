@@ -9,6 +9,7 @@ using RentCars.Data;
 using RentCars.Data.Models;
 
 [assembly: HostingStartup(typeof(RentCars.Web.Areas.Identity.IdentityHostingStartup))]
+
 namespace RentCars.Web.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup

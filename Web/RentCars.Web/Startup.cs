@@ -12,7 +12,6 @@
     using RentCars.Services.Mapping;
     using RentCars.Services.Messaging;
     using RentCars.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -68,11 +67,11 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             //services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
-            //services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
+           // services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
             services.AddTransient<ILocationsService, LocationsService>();
             services.AddTransient<ICarsService, CarsService>();
             services.AddTransient<IImagesService, ImagesService>();
-            //services.AddTransient<IOrdersService, OrdersService>();
+            services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IUsersService, UsersService>();
             //services.AddTransient<IReviewsService, ReviewsService>();
 

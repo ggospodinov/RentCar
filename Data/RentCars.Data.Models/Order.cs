@@ -2,19 +2,16 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
+    using RentCars.Data.Common.Models;
     using RentCars.Data.Models.Enums;
 
-    public class Order
+    public class Order : BaseModel<string>
     {
         public Order()
         {
-            this.Id = Guid.NewGuid().ToString().GetHashCode().ToString("x");
-            this.CreatedOn = DateTime.UtcNow;
-        }
 
-        [Key]
-        public string Id { get; set; }
+            Id = Guid.NewGuid().ToString();
+        }
 
         [Required]
         public int CarId { get; set; }
@@ -52,6 +49,6 @@
 
         public virtual Review Review { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+     
     }
 }

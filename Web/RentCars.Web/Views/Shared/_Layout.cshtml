@@ -32,7 +32,13 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="MyOrders"><b>My Orders</b></a>
                             </li>
                         }
-                        </ul>
+                        @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Cars" asp-action="Index"><b>Cars Admin</b></a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

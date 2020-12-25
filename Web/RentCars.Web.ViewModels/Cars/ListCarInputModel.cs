@@ -28,27 +28,25 @@
         public string Location { get; set; }
 
         public DateTime StartRent { get; set; }
+
         public DateTime End { get; set; }
+
         public int Days { get; set; }
 
-  
         public virtual ICollection<ReviewInputModel> Reviews { get; set; }
-
 
         public virtual ICollection<CarRentDays> RentDays { get; set; }
 
-       
-
-        //public void CreateMappings(IProfileExpression configuration)
-        //{
+        // public void CreateMappings(IProfileExpression configuration)
+        // {
         //    throw new NotImplementedException();
 
-        //    //configuration.CreateMap<Car, ListCarInputModel>()
+        // //configuration.CreateMap<Car, ListCarInputModel>()
         //    //     .ForMember(x => x.Image, opt =>
         //    //         opt.MapFrom(x =>
         //    //             x.Image.FirstOrDefault().RemoteImageUrl != null ?
         //    //             x.Image.FirstOrDefault().RemoteImageUrl :
         //    //             "/images/recipes/" + x.Image.FirstOrDefault().Id + "." + x.Image.FirstOrDefault().Extension));
-        //}
+        // }
     }
 }

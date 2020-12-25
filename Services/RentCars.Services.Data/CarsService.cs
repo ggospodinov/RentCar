@@ -52,11 +52,9 @@
                 dates.Add(dt);
             }
 
-
             var cars = this.carsRepository.AllAsNoTracking().
-                OrderBy(x => x.LocationId).
-                //Where(l => l.Location.Name == location).
-                Where(x => x.RentDays.Any(d => dates.Contains(d.RentDate)) == false).
+                 Where(l => l.Location.Name == location).
+                 Where(x => x.RentDays.Any(d => dates.Contains(d.RentDate)) == false).
                  Select(x => new ListCarInputModel
                  {
                      Id = x.Id,

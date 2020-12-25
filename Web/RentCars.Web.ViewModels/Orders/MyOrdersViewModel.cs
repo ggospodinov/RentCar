@@ -1,11 +1,10 @@
-﻿using RentCars.Data.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RentCars.Web.ViewModels.Orders
+﻿namespace RentCars.Web.ViewModels.Orders
 {
-   public class MyOrdersViewModel
+    using System;
+
+    using RentCars.Data.Models.Enums;
+
+    public class MyOrdersViewModel
     {
         public string Id { get; set; }
 

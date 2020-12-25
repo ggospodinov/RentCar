@@ -1,7 +1,7 @@
 ﻿namespace RentCars.Web.ViewModels.Orders
 {
     using System;
-   
+
     public class OrderInputViewModel
     {
         public int Id { get; set; }

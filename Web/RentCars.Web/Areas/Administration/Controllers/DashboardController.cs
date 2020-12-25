@@ -1,9 +1,8 @@
 ﻿namespace RentCars.Web.Areas.Administration.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
     using RentCars.Services.Data;
     using RentCars.Web.ViewModels.Administration.Dashboard;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class DashboardController : AdministrationController
     {

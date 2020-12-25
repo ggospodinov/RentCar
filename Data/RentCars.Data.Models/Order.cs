@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using RentCars.Data.Common.Models;
     using RentCars.Data.Models.Enums;
 
@@ -9,8 +10,8 @@
     {
         public Order()
         {
-
-            Id = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid().ToString();
+            this.CreatedOn = DateTime.UtcNow;
         }
 
         [Required]
@@ -48,7 +49,5 @@
         public int? ReviewId { get; set; }
 
         public virtual Review Review { get; set; }
-
-     
     }
 }

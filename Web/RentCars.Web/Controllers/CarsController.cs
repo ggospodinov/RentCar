@@ -15,9 +15,6 @@
         private readonly ICarsService carsService;
         private readonly ILocationsService locationsService;
 
-
-
-
         public CarsController(ICarsService carsService, ILocationsService locationsService)
             {
             this.carsService = carsService;
@@ -26,7 +23,6 @@
 
         public IActionResult All(int id = 1)
         {
-
             const int ItemsPerPage = 6;
             var viewModel = new CarsLstinViewtModel
             {
@@ -47,54 +43,45 @@
            return this.Redirect("/Identity/Account/Login");
        }
 
-            //   //if (!this.ModelState.IsValid)
+            // //if (!this.ModelState.IsValid)
             //    //{
             //    //    return this.RedirectToAction("Index", "Home");
-            //    //}
-
+            //  //}
         var cars = this.carsService.GetAvailableCars(model.Pickup, model.Return, model.PickupPlace).ToList();
 
-            //var location = this.locationsService.GetAllLocation().ToList();
-
-           
-
-            var viewModel = new AvailableCarsViewModel
+            // var location = this.locationsService.GetAllLocation().ToList();
+        var viewModel = new AvailableCarsViewModel
             {
                 Cars = cars,
                 Start = model.Pickup,
                 End = model.Return,
                 Days = (model.Return.Date - model.Pickup.Date).TotalDays,
 
-                PickUpPlace= model.PickupPlace,
+                PickUpPlace = model.PickupPlace,
                 ReturnPlace = model.PickupPlace,
             };
 
-            
-            
-
-            //foreach(var location in model.Locations.Select(x=>x.Name))
-            //{ 
-            //var locations = this.locationsService.GetAllLocation();
-            //}
-
+            // foreach(var location in model.Locations.Select(x=>x.Name))
+            // {
+            // var locations = this.locationsService.GetAllLocation();
+            // }
         return this.View(viewModel);
         }
 
         // public IActionResult> Details(int id)
-        //{
+        // {
         //    var car = await this.carsService.FindCar(id);
 
-        //    if (car is null)
+        // if (car is null)
         //    {
         //        return RedirectToAction("Index", "Home");
         //    }
 
-        //    var viewModel = this.mapper.Map<CarDetailsViewModel>(car);
+        // var viewModel = this.mapper.Map<CarDetailsViewModel>(car);
         //    viewModel.Reviews = this.mapper.Map<List<ReviewViewModel>>(car.Reviews);
         //    return this.View(viewModel);
 
-        //}
-
+       // }
         public IActionResult Details(int id)
         {
             const int ItemsPerPage = 1;

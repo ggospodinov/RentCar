@@ -45,9 +45,8 @@
                 <div class="col-md-12">
                     <h2 class="page-title">reservation</h2>
                     <ol class="page-list">
-                        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                        <li><a href="#0">car list</a></li>
-                        <li>reservation</li>
+                        <li><a class="text-white " asp-area="" asp-controller="Home" asp-action="Index"><b>Home</b></a></li>
+                        <li>car list</li>
                     </ol>
                 </div>
             </div>
@@ -77,7 +76,6 @@
         <div class="car-item-body">
             <div class="content">
                 <h4 class="title">@car.Model</h4>
-                <h4 class="title">@car.Location.Name</h4>
                 <span class="price">@car.PricePerDay</span>
                 <p>@car.Description</p>
 
@@ -93,8 +91,8 @@
         </div>
     </div>
 </div>}
-
-        <partial name="_PagingPartial" model="@Model" />
+        <div>
+            <partial name="_PagingPartial" model="@Model" />
         </div>
     </section> <!-- car-search-section end --> <!-- footer-section start --> <!-- footer-section end --> <!-- scroll-to-top start -->
     <div class="scroll-to-top">

@@ -1,7 +1,9 @@
 ﻿namespace RentCars.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using RentCars.Data.Common.Models;
     using RentCars.Data.Models.Enums;
 
@@ -12,6 +14,7 @@
             this.Reviews = new HashSet<Review>();
             this.RentDays = new HashSet<CarRentDays>();
             this.InUse = true;
+            this.CreatedOn = DateTime.UtcNow;
         }
 
         public bool InUse { get; set; }

@@ -25,7 +25,5 @@
         {
             return this.settingsRepository.AllAsNoTracking().Count();
         }
-
-        
     }
 }

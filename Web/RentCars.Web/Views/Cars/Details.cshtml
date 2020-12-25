@@ -2,7 +2,7 @@
 @model RentCars.Web.ViewModels.Cars.CarsLstinViewtModel
          @{ViewData["Title"] = "Details cars";}
 
-< div class="container">
+<div class="container">
 
     @foreach (var car in Model.Cars)
     {
@@ -37,6 +37,12 @@
         <h6><i class="fas fa-location-arrow"></i> GPS Navigation: Yes </h6>
     </div>
 </div>
+    <br />
+
+    
+    <form>
+ <input type="button" value="Go back!" onclick="history.back()">
+</form>
 
     @if (car.Reviews.Count > 0)
     {
@@ -44,15 +50,17 @@
 @await Html.PartialAsync("~/Views/Shared/_CarReviewsPartial.cshtml", car.Reviews) }
 else
 {
-<h3>This cars was not reviewed by our users.</h3>
+@*<h3>This cars was not reviewed by our users.</h3>*@
+
+
+    
     }
     }
     
 
     @section Scripts {
         <partial name="~/Views/Shared/_DataValidationAndConfirmScripts.cshtml" />
-       @*// <partial name="~/Views/Shared/Partials/_FontAwesomeIcons.cshtml" />*@
+      
     }
 
-    <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
-    <script src="/js/notify.js"></script>
+  </div>

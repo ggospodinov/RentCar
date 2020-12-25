@@ -7,7 +7,6 @@
 
     public class CarRentDays : BaseDeletableModel<int>
     {
-
         [Required]
         public int CarId { get; set; }
 

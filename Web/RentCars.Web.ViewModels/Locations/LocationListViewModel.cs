@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RentCars.Web.ViewModels.Locations
+﻿namespace RentCars.Web.ViewModels.Locations
 {
-   public class LocationListViewModel
+    using System.Collections.Generic;
+
+    public class LocationListViewModel
     {
       public IEnumerable<LocationInputModel> Locations { get; set; }
     }

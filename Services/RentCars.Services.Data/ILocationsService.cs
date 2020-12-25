@@ -1,14 +1,18 @@
 ﻿namespace RentCars.Services.Data
 {
-    using RentCars.Web.ViewModels.Locations;
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
+
+    using RentCars.Web.ViewModels.Locations;
 
     public interface ILocationsService
     {
-        IEnumerable<LocationInputModel> GetAllLocation();
-        Task GetIdByName(string startLocation);
+        IEnumerable<LocationInputModel> GetAllLocation(string name);
+
+        ICollection<string> GetAllLocationNames();
+
+        // Task GetIdByName(string startLocation);
+
+        ///*string GetIdByName(string name)*/;
     }
 }

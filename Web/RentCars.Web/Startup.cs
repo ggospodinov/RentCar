@@ -2,16 +2,7 @@
 {
     using System.Reflection;
 
-    using RentCars.Data;
-    using RentCars.Data.Common;
-    using RentCars.Data.Common.Repositories;
-    using RentCars.Data.Models;
-    using RentCars.Data.Repositories;
-    using RentCars.Data.Seeding;
-    using RentCars.Services.Data;
-    using RentCars.Services.Mapping;
-    using RentCars.Services.Messaging;
-    using RentCars.Web.ViewModels;
+    using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -20,8 +11,17 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.AspNetCore.Identity;
+    using RentCars.Data;
+    using RentCars.Data.Common;
+    using RentCars.Data.Common.Repositories;
+    using RentCars.Data.Models;
+    using RentCars.Data.Repositories;
+    using RentCars.Data.Seeding;
     using RentCars.Services;
+    using RentCars.Services.Data;
+    using RentCars.Services.Mapping;
+    using RentCars.Services.Messaging;
+    using RentCars.Web.ViewModels;
 
     public class Startup
     {
@@ -58,6 +58,16 @@
 
             services.AddSingleton(this.configuration);
 
+            // Config Cloud Storage
+            Account account = new Account(
+                this.configuration["Cloudinary:AppName"],
+                this.configuration["Cloudinary:AppName"],
+                this.configuration["Cloudinary:AppName"]);
+
+            Cloudinary cloudinary = new Cloudinary(account);
+
+            services.AddSingleton(cloudinary);
+
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -66,15 +76,16 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
-            //services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
+
+            // services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
            // services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
             services.AddTransient<ILocationsService, LocationsService>();
             services.AddTransient<ICarsService, CarsService>();
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IUsersService, UsersService>();
-            //services.AddTransient<IReviewsService, ReviewsService>();
 
+            // services.AddTransient<IReviewsService, ReviewsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

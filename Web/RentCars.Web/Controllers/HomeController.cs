@@ -2,15 +2,28 @@
 {
     using System.Diagnostics;
 
-    using RentCars.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using RentCars.Services.Data;
+    using RentCars.Web.ViewModels;
+    using RentCars.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
+        private readonly ILocationsService locationsService;
+        private readonly IOrdersService ordersService;
+
+        public HomeController(ILocationsService locationsService, IOrdersService ordersService)
+        {
+            this.locationsService = locationsService;
+            this.ordersService = ordersService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var locationsList = this.locationsService.GetAllLocationNames();
+
+            this.ViewData["FinishedOrders"] = this.ordersService.UserFinishedOrders(this.User.Identity.Name);
+            return this.View(new SearchCarsViewModel { Locations = locationsList });
         }
 
         public IActionResult Privacy()

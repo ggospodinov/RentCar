@@ -1,9 +1,8 @@
 ﻿namespace RentCars.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using RentCars.Data.Models;
     using RentCars.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

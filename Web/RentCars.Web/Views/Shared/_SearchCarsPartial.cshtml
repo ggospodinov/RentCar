@@ -1,6 +1,5 @@
 ﻿@model RentCars.Web.ViewModels.Home.SearchCarsViewModel
 
-
 <div class="col-md-7 card" style="background-color: white; font-size:150%">
     <form asp-controller="Cars" asp-action="Available" method="POST">
         <div asp-validation-summary="All" class="text-danger"></div>
@@ -18,12 +17,10 @@
             <div class="col-md-6 mb-3">
                 <label asp-for="PickupPlace" class="text-black-50">Pick Up location for the car</label>
                 <select class="custom-select" asp-for="PickupPlace">
-
-
-                    @*@foreach(var location in this.Model.Locations)
-                        {
-                            <option value="@location">@location</option>
-                        }*@
+                     @foreach(var location in Model.Locations)
+        {
+            <option value="@location">@location</option>
+        }
                 </select>
                 <span asp-validation-for="PickupPlace"
                       class="text-danger"></span>
@@ -33,10 +30,10 @@
                 <label asp-for="ReturnPlace" class="text-black-50">Return location for the car</label>
                 <select class="custom-select" asp-for="ReturnPlace">
 
-                    @*@foreach (var location in Model.Locations)
+                    @foreach (var location in Model.Locations)
                         {
                             <option value="@location">@location</option>
-                        }*@
+                        }
                 </select>
                 <span asp-validation-for="ReturnPlace"
                       class="text-danger"></span>

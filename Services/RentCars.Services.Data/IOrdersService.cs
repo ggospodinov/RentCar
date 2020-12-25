@@ -1,17 +1,19 @@
-﻿using RentCars.Web.ViewModels.Orders;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RentCars.Services.Data
+﻿namespace RentCars.Services.Data
 {
-  public interface IOrdersService
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using RentCars.Web.ViewModels.Orders;
+
+    public interface IOrdersService
     {
         IEnumerable<OrderPreviewInputModel> OrderPreviewGetId(string id);
 
         IEnumerable<AllOrderInput> GetAllOrdersForUser(string email);
 
-        Task<bool> MakeOrder(string email, int carId, string startLocation, string returnLocation, decimal price, DateTime startRent, DateTime endRent);
+        // Task CreateAsync(OrderInputViewModel input, string email, string pickUpPlace, string returnPlace);
+        bool UserFinishedOrders(string name);
     }
 }

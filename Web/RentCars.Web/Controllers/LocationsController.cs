@@ -18,17 +18,14 @@
             this.locatonsService = locatonsService;
         }
 
+        // public IActionResult All()
+        // {
+        // var viewModel = new LocationListViewModel
+        //    {
+        //        Locations = this.locatonsService.GetAllLocation(),
+        //    };
 
-        public IActionResult All()
-        {
-
-
-            var viewModel = new LocationListViewModel
-            {
-                Locations = this.locatonsService.GetAllLocation(),
-            };
-
-            return this.View(viewModel);
-        }
+        // return this.View(viewModel);
+        // }
     }
 }

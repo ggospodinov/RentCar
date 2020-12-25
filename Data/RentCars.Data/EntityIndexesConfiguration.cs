@@ -2,9 +2,8 @@
 {
     using System.Linq;
 
-    using RentCars.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using RentCars.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

@@ -86,8 +86,6 @@
             builder.Entity<Location>().HasData(new Location { Id = 8, Name = "Pleven, Hotel Bulgaria" });
             builder.Entity<Location>().HasData(new Location { Id = 9, Name = "Sozopol, Old City Post Office" });
             builder.Entity<Location>().HasData(new Location { Id = 10, Name = "Lovech, Varosha Gallery" });
-
-
             builder.Entity<Car>().HasData(new Car
             {
                 Id = 1,
@@ -178,8 +176,6 @@
                 Year = 2020,
                 Speed = 230,
             });
-
-
             builder.Entity<Car>().HasData(new Car
             {
                 Id = 8,

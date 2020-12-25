@@ -1,8 +1,8 @@
 ﻿namespace RentCars.Data.Configurations
 {
-    using RentCars.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using RentCars.Data.Models;
 
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

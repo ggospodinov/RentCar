@@ -4,11 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using RentCars.Common;
-    using RentCars.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using RentCars.Common;
+    using RentCars.Data.Models;
 
     internal class RolesSeeder : ISeeder
     {

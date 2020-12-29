@@ -1,0 +1,91 @@
+﻿@model RentCars.Web.ViewModels.Orders.OrdersDetailsViewModel
+
+@{ ViewData["Title"] = "Order Details"; }
+
+@foreach (var order in Model.Cars)
+{ 
+
+@*@if (Model.ReviewId == null && Model.Status == RentCars.Data.Models.Enums.OrderStatus.Finished)
+    {
+    <div class="alert alert-dismissible alert-success" style="margin-top:2%">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">Congratulations! Your order was finished</h4>
+        <p class="mb-0">You can leave a review for your order and win a discount voucher! <a asp-controller="Reviews" asp-action="Create" asp-route-orderId="@Model.Id">Follow this link!</a></p>
+    </div>}*@
+
+
+@*@if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+    {
+    <a class="btn btn-info" asp-controller="Orders" asp-area="Administration" asp-action="Edit" asp-route-id="@Model.Id">Edit Order</a>}
+
+    @if (@Model.Status == RentCars.Data.Models.Enums.OrderStatus.Active)
+    {
+    <span class="badge badge-pill badge-warning" style="margin-top:5%">@Model.Status</span> }
+                else if (@Model.Status == RentCars.Data.Models.Enums.OrderStatus.Finished)
+                {
+    <span class="badge badge-pill badge-success" style="margin-top:5%">@Model.Status</span> }
+                else
+                {
+    <span class="badge badge-pill badge-danger" style="margin-top:5%">@Model.Status</span>}
+
+    <span class=" badge badge-pill badge-info" style="margin-top:5%; float:right" onclick="myFunction()">Print this order</span>
+
+    <h1>Order ID: @Model.Id.ToUpper()</h1>*@
+
+<hr class="border-primary" />
+<div class="container-fluid">
+    <div class="d-flex justify-content-between">
+        <h4>Customer Email:</h4>
+        <h4>@order.Email</h4>
+    </div>
+    <hr class="border-primary" />
+    <div class="d-flex justify-content-between">
+        <h4>Pick Up Location:</h4>
+        <h4>@order.PickUpLocation</h4>
+    </div>
+    <div class="d-flex justify-content-between">
+        <h4>Return Location:</h4>
+        <h4>@order.ReturnLocation</h4>
+    </div>
+    <hr class="border-primary" />
+    <div class="d-flex justify-content-between">
+        <h4>Rent start:</h4>
+        <h4>@order.RentStart.ToShortDateString()</h4>
+    </div>
+    <div class="d-flex justify-content-between">
+        <h4>Rent end:</h4>
+        <h4>@order.RentEnd.ToShortDateString()</h4>
+    </div>
+    <hr class="border-primary" />
+    <h2>Your Car:</h2>
+    <div class="d-flex justify-content-between">
+        <img src="@order.Image" alt="Image" width="150"/>
+        <div>
+            <h4>Model: @order.CarModel</h4>
+            <h4>Gear Type: @order.CarGearType</h4>
+            <h4>Year: @order.Year</h4>
+        </div>
+    </div>
+    <div>@order.Description.ToString()</div>
+    <hr class="border-primary" />
+</div>
+<center>
+    <div class="text-success" style="font-size:200%">Price: $@order.Price</div>
+</center>
+
+
+@if (order.Comment != null)
+{
+<hr class="border-primary" />
+                <div class="justify-content-between">
+                    <h3>Your Feedback:</h3>
+                    <h4>@order.Comment <strong class="text-primary">Rating: @order.Rating</strong></h4>
+                </div>}
+}
+
+<hr class="border-primary" />
+<script>
+    function myFunction() {
+        window.print();
+    }</script>
+

@@ -50,16 +50,11 @@
         // GET: Administration/Cars/Create
         public IActionResult Create()
         {
-            //this.ViewData["LocationId"] = this.dataRepository.All().Select(b => new SelectListItem
-            //{
-            //    Value =(int)b.Location.,
-            //}).ToList();
-
             return this.View();
         }
 
         // POST: Administration/Cars/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -72,11 +67,10 @@
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            //this.ViewData["LocationId"] = this.dataRepository.All().Select(b => new SelectListItem
-            //{
+            // this.ViewData["LocationId"] = this.dataRepository.All().Select(b => new SelectListItem
+            // {
             //    Text = b.Location.Name,
-            //}).ToList();
-
+            // }).ToList();
             return this.View(car);
         }
 
@@ -94,15 +88,11 @@
                 return this.NotFound();
             }
 
-            //this.ViewData["LocationId"] = this.dataRepository.All().Select(b => new SelectListItem
-            //{
-            //    Text = b.Location.Name,
-            //}).ToList();
             return this.View(car);
         }
 
         // POST: Administration/Cars/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -135,10 +125,6 @@
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            //this.ViewData["LocationId"] = this.dataRepository.All().Select(b => new SelectListItem
-            //{
-            //    Text = b.Location.Name,
-            //}).ToList();
             return this.View(car);
         }
 

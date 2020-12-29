@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
+
     using RentCars.Data.Common.Repositories;
     using RentCars.Data.Models;
     using RentCars.Web.ViewModels.Locations;
@@ -36,12 +36,16 @@
                  ToList();
         }
 
-        //public string GetIdByName(string name)
-        //{
+        public int GetIdByName(string name)
+        {
+            var location = this.locationsRepository.All().OrderBy(x => x.Id).FirstOrDefault(x => x.Name == name);
 
-        //    return this.locationsRepository.AllAsNoTracking().
-        //         .FirstOrDefault(x => x.Name == name)
-               
-        //}
+            if (location is null)
+            {
+                return 0;
+            }
+
+            return location.Id;
+        }
     }
 }

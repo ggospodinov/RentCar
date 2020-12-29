@@ -5,8 +5,6 @@
 
     using RentCars.Data.Models;
     using RentCars.Data.Models.Enums;
-    using RentCars.Services.Mapping;
-    using RentCars.Web.ViewModels.Locations;
     using RentCars.Web.ViewModels.Reviews;
 
     public class ListCarInputModel

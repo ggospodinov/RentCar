@@ -1,5 +1,8 @@
 ﻿namespace RentCars.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using RentCars.Data.Models;
@@ -22,34 +25,49 @@
             this.userManager = userManager;
         }
 
-        public IActionResult MyOrders(MyOrdersViewModel viewModels)
+        [Authorize]
+        public IActionResult MyOrders()
         {
-           var userEmail = this.User.Identity.Name;
-           var orders = this.ordersService.GetAllOrdersForUser(userEmail);
+            var viewModel = new AllOrderInputViewModel
+            {
+                Orders = this.ordersService.All(),
+            };
 
-            // var viewModel =  MyOrdersViewModel viewModels(orders);
-           return this.View(viewModels);
+            return this.View(viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Preview(OrderPreviewInputModel inputModel)
         {
             return this.View(inputModel);
         }
 
+        [Authorize]
         [HttpPost]
-
-        public async System.Threading.Tasks.Task<IActionResult> OrderAsync(OrderInputViewModel inputModel)
+        public async Task<IActionResult> Order(OrderInputViewModel inputModel)
         {
-            var carModel = this.carsService.GetCarModelById(inputModel.Id);
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
 
-            var user = await this.userManager.GetUserAsync(this.User);
-
-            //var result = this.ordersService.CreateAsync(inputModel, user.Id, user.Email, carModel, inputModel.PickUpPlace, inputModel.ReturnPlace);
-
-            int days = (inputModel.Return - inputModel.PickUp).Days;
+            var result = await this.ordersService.MakeOrder(this.User.Identity.Name, inputModel.Id, inputModel.PickUpPlace, inputModel.ReturnPlace, inputModel.Price, inputModel.PickUp, inputModel.Return);
+            var carModel = this.carsService.GetCarModelById(id: inputModel.Id);
+            var days = (inputModel.Return - inputModel.PickUp).Days;
 
             return this.RedirectToAction(nameof(this.MyOrders));
+        }
+
+        [Authorize]
+        public IActionResult Details(string id)
+        {
+            var viewModel = new OrdersDetailsViewModel
+            {
+                Cars = this.ordersService.GetOrderById(id),
+            };
+
+            return this.View(viewModel);
         }
     }
 }

@@ -32,7 +32,6 @@
         [Required]
         public string ReturnPlace { get; set; }
 
-        // public string DiscountCode { get; set; } = GlobalConstants.DefaultVoucherCode;
         public int DiscountPercent { get; set; }
 
         public decimal PriceWithoutDiscount => this.PricePerDay * this.Days;

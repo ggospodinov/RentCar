@@ -14,92 +14,83 @@
         private readonly IRepository<Order> ordersRepository;
         private readonly IUsersService usersService;
         private readonly ILocationsService locationsService;
-        private readonly ICarsService carsService;
-        private readonly IOrdersService orderService;
 
-        public OrdersService(IRepository<Order> ordersRepository, IUsersService usersService, ILocationsService locationsService, ICarsService carsService)
+        public OrdersService(IRepository<Order> ordersRepository, IUsersService usersService, ILocationsService locationsService)
         {
             this.ordersRepository = ordersRepository;
             this.usersService = usersService;
             this.locationsService = locationsService;
-            this.carsService = carsService;
         }
 
-        // public Task CreateAsync(OrderInputViewModel input, string email, string pickUpPlace, string returnPlace)
-        // {
-        //    var userId = this.usersService.GetUserIdByEmail(email);
-
-        // var order = new Order
-        //    {
-        //        ApplicationUserId = userId,
-        //        CarId = c,
-        //        RentEnd = input,
-        //        //RentStart = input.,
-        //        Price = input.Price,
-        //        //PickUpLocationId = pickupLocationId,
-        //        //ReturnLocationId = returnLocationId,
-
-        // PickUpLocationId = pickupLocationId,
-        //        // ReturnLocationId = returnLocationId,
-        //        // Status = Models.Enums.OrderStatus.Active,
-        //    };
-
-        // await this.ordersRepository.AddAsync(order);
-        //    //await this.ordersRepository.SaveChangesAsync();
-        // }
-        public IEnumerable<AllOrderInput> GetAllOrdersForUser(string email)
+        public IEnumerable<MyOrdersViewModel> All()
         {
-            var user = this.usersService.GetUserByEmail(email);
+            var orders = this.ordersRepository.AllAsNoTracking().OrderBy(x => x.User.Email).OrderByDescending(x => x.CreatedOn).Select(x => new MyOrdersViewModel
+            {
+                Id = x.Id,
+                CarModel = x.Car.Model,
+                PickUpLocation = x.PickUpLocation.Name,
+                ReturnLocation = x.ReturnLocation.Name,
+                Price = x.Price,
+                RentStart = x.RentStart,
+                RentEnd = x.RentEnd,
+                Status = x.Status,
+            }).ToList();
 
-            var orders = this.ordersRepository.All().OrderByDescending(x => x.CreatedOn).ToList();
-
-            // var orders = user.Orders.OrderByDescending(x => x.CreatedOn).ToList();
-            return new List<AllOrderInput>();
+            return orders;
         }
 
-        //public async Task<bool> MakeOrder(string email, int carId, string startLocation, string returnLocation, decimal price, DateTime startRent, DateTime endRent)
-        //{
-        //    var userId = this.usersService.GetUserIdByEmail(email);
+        public IEnumerable<OrderDetailsInputModel> GetOrderById(string id)
+        {
+            var orders = this.ordersRepository.AllAsNoTracking()
+                .OrderBy(x => x.User.Email).OrderByDescending(x => x.CreatedOn).
+                Select(x => new OrderDetailsInputModel
+            {
+                    Id = x.CarId,
+                    Email = x.User.Email,
+                    PickUpLocation = x.PickUpLocation.Name,
+                    ReturnLocation = x.ReturnLocation.Name,
+                    RentStart = x.RentStart,
+                    RentEnd = x.RentEnd,
+                    CarModel = x.Car.Model,
+                    Image = x.Car.Image,
+                    Description = x.Car.Description,
+                    CarGearType = x.Car.GearType,
+                    Year = x.Car.Year,
+                    Price = x.Price,
+            }).ToList();
 
-        //     var pickupLocationId = await this.locationsService.GetAllLocation(startLocation);
-        //     var returnLocationId = await this.locationsService.GetIdByName(returnLocation);
-        //    if (userId is null)
-        //    {
-        //        return false;
-        //    }
+            return orders;
+        }
 
-        //    var order = new Order
-        //    {
-        //        ApplicationUserId = userId,
-        //        CarId = carId,
-        //        RentEnd = endRent,
-        //        RentStart = startRent,
-        //        Price = price,
+        public async Task<bool> MakeOrder(string email, int carId, string startLocation, string returnLocation, decimal price, DateTime startRent, DateTime endRent)
+       {
+           var userId = this.usersService.GetUserIdByEmail(email);
 
-        //        // PickUpLocationId = pickupLocationId,
-        //        // ReturnLocationId = returnLocationId,
-        //        // Status = Models.Enums.OrderStatus.Active,
-        //    };
+           var pickupLocationId = this.locationsService.GetIdByName(startLocation);
+           var returnLocationId = this.locationsService.GetIdByName(returnLocation);
+           if (userId is null)
+            {
+                return false;
+            }
 
-        //    await this.ordersRepository.AddAsync(order);
-        //    await this.ordersRepository.SaveChangesAsync();
+           var order = new Order
+           {
+              ApplicationUserId = userId,
+              CarId = carId,
+              RentEnd = endRent,
+              RentStart = startRent,
+              Price = price,
+              PickUpLocationId = pickupLocationId,
+              ReturnLocationId = returnLocationId,
+              Status = RentCars.Data.Models.Enums.OrderStatus.Active,
+           };
 
-        //    return true;
-        //}
+           await this.ordersRepository.AddAsync(order);
+           await this.ordersRepository.SaveChangesAsync();
 
-        // public ICollection<OrderInputModel> GetAllOrdersForUser(string email)
-        // {
-        //    var user = this.usersService.GetUserByEmail(email);
+           return true;
+        }
 
-        // if (user is null)
-        //    {
-        //        return new List<OrderInputModel>();
-        //    }
-
-        // var orders = user.Orders.OrderByDescending(x => x.CreatedOn).ToList();
-
-        // return this.List<OrderInputModel>(orders);
-        // }
         public IEnumerable<OrderPreviewInputModel> OrderPreviewGetId(string id)
         {
             var orders = this.ordersRepository.AllAsNoTracking()

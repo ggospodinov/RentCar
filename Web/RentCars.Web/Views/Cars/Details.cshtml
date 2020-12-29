@@ -16,11 +16,9 @@
         if (User.IsInRole("Administrator"))
         {
 <a class="btn btn-info" asp-controller="Cars" asp-area="Administration" asp-action="Edit" asp-route-id="@car.Id">Edit Car</a>
-                <a class="btn btn-info" asp-controller="Cars" asp-action="Delete" asp-area="Administration" asp-route-id="@car.Id" data-confirm="This car will become hidden for use in the site. All related orders and reviews will remain unchanged. Continue?">Delete Car</a>}
-        @if (car.Reviews.Count > 0)
-                    {
-                        //<partial name="_CarDetailsBadge" model="@.Reviews" />
-                @await Html.PartialAsync("~/Views/Shared/_CarDetailsBadge.cshtml", @car.Reviews)}
+                <a class="btn btn-info" asp-controller="Cars" asp-action="Delete" asp-area="Administration" asp-route-id="@car.Id" data-confirm="This car will become hidden for use in the site. All related orders and reviews will remain unchanged. Continue?">Delete Car</a>
+         }
+       
 <div class="row">
     <div class="col-md-8">
         <img class="img-fluid" src="@car.Image" alt="">
